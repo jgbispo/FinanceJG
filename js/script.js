@@ -3,6 +3,13 @@ const dummyTransaction = [
   { id: 2, name: "Passagem GVBus", ammout: -160.0 },
   { id: 3, name: "ICloud", ammout: -3.5 },
   { id: 4, name: "Wizard", ammout: -135.0 },
+  { id: 5, name: "Wizard", ammout: -135.0 },
+  { id: 6, name: "Wizard", ammout: -135.0 },
+  { id: 7, name: "Wizard", ammout: -135.0 },
+  { id: 8, name: "Wizard", ammout: -135.0 },
+  { id: 9, name: "Wizard", ammout: -135.0 },
+  { id: 10, name: "Wizard", ammout: -135.0 },
+  { id: 11, name: "Wizard", ammout: -135.0 },
 ];
 
 // Atualizando a DOM
@@ -26,3 +33,10 @@ const addTransactionIntoDOM = (transaction) => {
   transactionUL.prepend(li);
 };
 
+// Iniciando a aplicação
+
+const init = () => {
+  dummyTransaction.forEach(addTransactionIntoDOM);
+}
+
+init();
