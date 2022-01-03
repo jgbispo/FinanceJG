@@ -70,4 +70,11 @@ const init = () => {
   updateBalanceValues();
 };
 
+// Eventos dos botões 
+
+document.querySelector("#form").addEventListener("submit", event => {
+  event.preventDefault();
+})
+
+
 init();
