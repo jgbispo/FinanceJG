@@ -1,9 +1,13 @@
-let dummyTransaction = [
-  { id: 1, name: "Sálario", ammout: 695.0 },
-  { id: 2, name: "Passagem GVBus", ammout: -160.0 },
-  { id: 3, name: "ICloud", ammout: -3.5 },
-  { id: 4, name: "Wizard", ammout: -135.0 },
-];
+// LocalStorage
+const localStorageTransaction = JSON.parse(
+  localStorage.getItem("transactions")
+);
+let transactions =
+  localStorage.getItem("transactions") !== null ? localStorageTransaction : [];
+
+const updateLocalStorage = () => {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+};
 
 // Atualizando a DOM
 const transactionUL = document.querySelector("#transactions");
@@ -47,7 +51,7 @@ const updateBalanceValues = () => {
   let expenseUI = document.querySelector("#money-minus");
 
   // Fazendo o calculo
-  const transactionAmounts = dummyTransaction.map(
+  const transactionAmounts = transactions.map(
     (transaction) => transaction.ammout
   );
 
@@ -73,24 +77,21 @@ const updateBalanceValues = () => {
 // Iniciando a aplicação
 const init = () => {
   transactionUL.innerHTML = ``;
-  dummyTransaction.forEach(addTransactionIntoDOM);
+  transactions.forEach(addTransactionIntoDOM);
   updateBalanceValues();
 };
 
-// Eventos dos botões 
-
-document.querySelector("#form").addEventListener("submit", event => {
+// Eventos dos botões
+document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
-})
-
+});
 
 init();
 
 //gerando id
-const generateID = () => Math.round(Math.round() * 1000);
+const generateID = (ammout) => Math.round(Math.random() * 1000 * ammout);
 
 // Eventos dos botões
-
 /*Adiocionar Novas transações*/
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -99,22 +100,22 @@ document.querySelector("#form").addEventListener("submit", (event) => {
   const amountValue = inputAmount.value.trim();
 
   const transaction = {
-    id: generateID(),
+    id: generateID(+amountValue),
     name: nameValue,
     ammout: +amountValue,
   };
 
-  dummyTransaction.push(transaction);
+  transactions.push(transaction);
   init();
+  updateLocalStorage();
 
-  inputName.nodeValue = "";
-  inputAmount.nodeValue = "";
+  inputName.value = "";
+  inputAmount.value = "";
 });
 
-/*Adiocionar Novas transações*/
+/*Removendo transações*/
 removeTransaction = (ID) => {
-  dummyTransaction = dummyTransaction.filter(
-    (transaction) => transaction.id !== ID
-  );
+  transactions = transactions.filter((transaction) => transaction.id !== ID);
+  updateLocalStorage();
   init();
 };
