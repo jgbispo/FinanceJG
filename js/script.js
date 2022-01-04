@@ -7,9 +7,10 @@ const dummyTransaction = [
 
 // Atualizando a DOM
 const transactionUL = document.querySelector("#transactions");
+const inputName = document.querySelector("#text");
+const inputAmount = document.querySelector("#amount");
 
 const addTransactionIntoDOM = (transaction) => {
-
   // Verificando qual o tipo de operação
   const operator = transaction.ammout < 0 ? "-" : "+";
 
@@ -43,7 +44,7 @@ const updateBalanceValues = () => {
   let balance = document.querySelector("#balance");
   let incomeUI = document.querySelector("#money-plus");
   let expenseUI = document.querySelector("#money-minus");
-  
+
   // Fazendo o calculo
   const transactionAmounts = dummyTransaction.map(
     (transaction) => transaction.ammout
@@ -69,5 +70,16 @@ const init = () => {
   dummyTransaction.forEach(addTransactionIntoDOM);
   updateBalanceValues();
 };
+
+// Eventos dos botões
+
+document.querySelector("#form").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (inputName.value.trim() === "") {
+    inputName.className += "borderRed"
+  }
+
+});
 
 init();
