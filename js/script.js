@@ -85,7 +85,6 @@ const init = () => {
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
 });
-
 init();
 
 //gerando id
