@@ -1,4 +1,4 @@
-const dummyTransaction = [
+let dummyTransaction = [
   { id: 1, name: "Sálario", ammout: 695.0 },
   { id: 2, name: "Passagem GVBus", ammout: -160.0 },
   { id: 3, name: "ICloud", ammout: -3.5 },
@@ -25,8 +25,9 @@ const addTransactionIntoDOM = (transaction) => {
   )
     .toFixed(2)
     .replace(".", ",")}</span> 
-  <button class="delete-btn">x</button>`;
-
+  <button class="delete-btn" onClick="removeTransaction(${
+    transaction.id
+  })">x</button>`;
   // Adicionando a UL
   transactionUL.prepend(li);
 };
@@ -102,3 +103,11 @@ document.querySelector("#form").addEventListener("submit", (event) => {
   inputName.nodeValue = "";
   inputAmount.nodeValue = "";
 });
+
+/*Adiocionar Novas transações*/
+removeTransaction = (ID) => {
+  dummyTransaction = dummyTransaction.filter(
+    (transaction) => transaction.id !== ID
+  );
+  init();
+};
