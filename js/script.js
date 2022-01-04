@@ -49,7 +49,8 @@ const updateBalanceValues = () => {
   const transactionAmounts = dummyTransaction.map(
     (transaction) => transaction.ammout
   );
-  const sum = sumArray(transactionAmounts);
+
+  const sum = transactionAmounts.reduce((total, number) => total + number, 0);
 
   // Atualizando os Incomes
   const incomeList = transactionAmounts.filter((ammout) => ammout > 0);
@@ -60,26 +61,44 @@ const updateBalanceValues = () => {
   const expense = sumArray(expenseList);
 
   //Atualizando a UI
-  balance.innerHTML = sum < 0 ? `- R$${Math.abs(sum)}` : `R$${sum}`;
+  balance.innerHTML =
+    sum < 0
+      ? `- R$${Math.abs(sum).toFixed(2).replace(".", ",")}`
+      : `R$${sum.toFixed(2).replace(".", ",")}`;
   incomeUI.innerHTML = `+ R$${income}`;
   expenseUI.innerHTML = `- R$${expense}`;
 };
 
 // Iniciando a aplicação
 const init = () => {
+  transactionUL.innerHTML = ``;
   dummyTransaction.forEach(addTransactionIntoDOM);
   updateBalanceValues();
 };
 
+init();
+
+//gerando id
+const generateID = () => Math.round(Math.round() * 1000);
+
 // Eventos dos botões
 
+/*Adiocionar Novas transações*/
 document.querySelector("#form").addEventListener("submit", (event) => {
   event.preventDefault();
 
-  if (inputName.value.trim() === "") {
-    inputName.className += "borderRed"
-  }
+  const nameValue = inputName.value.trim();
+  const amountValue = inputAmount.value.trim();
 
+  const transaction = {
+    id: generateID(),
+    name: nameValue,
+    ammout: +amountValue,
+  };
+
+  dummyTransaction.push(transaction);
+  init();
+
+  inputName.nodeValue = "";
+  inputAmount.nodeValue = "";
 });
-
-init();
