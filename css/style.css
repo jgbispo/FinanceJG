@@ -93,6 +93,17 @@ input:focus {
   outline: 0;
 }
 
+/* input:invalid {  border: 1px solid #df0f0f; }
+input:valid {  border: 1px solid #dedede; } */
+
+input:not(:placeholder-shown) {
+  border-color: green;
+}
+
+input:placeholder-shown {
+  border-color: red;
+}
+
 .btn {
   cursor: pointer;
   background-color: #9c88ff;
@@ -155,3 +166,4 @@ input:focus {
 .transactions li:hover .delete-btn {
   opacity: 1;
 }
+
