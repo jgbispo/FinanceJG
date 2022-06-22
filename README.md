@@ -1,5 +1,7 @@
 # Finance JG
 
+![image](https://user-images.githubusercontent.com/83095574/175035388-f7bd33d1-f8ca-4b78-9f7e-a01351243950.png)
+
 ## 💫 **Oq é?**
 
 Depois de muito tempo sem programar nada, resolvi voltar, nada muito complexo, apenas uma aplicação simple em Js feita seguindo um tutorial no youtube e alguns artigos na internet (Link no fim da página).
