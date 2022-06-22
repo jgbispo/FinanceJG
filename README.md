@@ -1,6 +1,5 @@
 # Finance JG
-
-![image](https://user-images.githubusercontent.com/83095574/175036473-8d1c92ca-9dbf-4159-b3af-b55c0f3bea03.png)
+![image](https://user-images.githubusercontent.com/83095574/175036882-91d811ef-eda1-46af-8310-20bfb5117271.png)
 
 ## 💫 **Oq é?**
 
